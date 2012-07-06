@@ -1,0 +1,5 @@
+unsetenv DISPLAY
+
+escape ^Jj
+term screen-256color
+
