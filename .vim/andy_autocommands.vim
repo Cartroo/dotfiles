@@ -100,7 +100,6 @@ fun PythonMode_map()
   set softtabstop=4
   set shiftwidth=4
   set foldmethod=indent
-  compiler pylint
 endfun
 
 fun PythonMode_unmap()
