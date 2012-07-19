@@ -93,3 +93,6 @@ alias ls="ls --color=auto"
 # Handy alias to avoid having to remember screen options.
 alias attach="screen -xRR"
 
+# Alias for config management.
+alias dotgit='git --git-dir=${HOME}/.config.git --work-tree=${HOME}'
+
