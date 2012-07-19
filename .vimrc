@@ -65,7 +65,7 @@ set foldlevel=99
 set ic
 "set rulerformat=%33(<%-2.2n>\ \ %-5.5l\ [%-5.5L]\ \ %3.3c-%-3.3v\ \ %P%)
 set statusline=%<%t\ %y%m%r\ %=%{&ic?'case':'CaSe'}\ [%-5.5L]\ %-5.5l\ %-3.3c%V\ %P
-set titlestring=%t\ %{perforce#RulerStatus()}\ (%F)%<
+set titlestring=%t\ (%F)%<
 set virtualedit=block
 set scroll=4
 set iskeyword=@,48-57,_,192-255
@@ -76,7 +76,9 @@ set printheader=%<%t\ %m\ %y%=Page\ %N
 set printfont=:h8
 
 " Store swap files on a local disk
-set dir=/space/home/apearce/vimswap
+if isdirectory($HOME."/local/vimswap")
+  set dir=$HOME/local/vimswap
+endif
 
 " And some global options
 "
@@ -90,9 +92,6 @@ set dir=/space/home/apearce/vimswap
 
 set incsearch expandtab tagrelative hidden wildmenu title
 
-
-"  let &rulerformat = '%' . (orgWidth + g:p4RulerWidth) .  '(%{' .
-"        \ 'perforce#RulerStatus()}%=' . orgRuler . '%)'
 
 " Add menu support and map F1 to pop up the menu
 source $VIMRUNTIME/menu.vim
@@ -128,13 +127,6 @@ let xml_use_xhtml = 1
 let Tlist_Sort_Type = "name"
 let Tlist_Use_Horiz_Window = 1
 
-" Add hook for Perforce checkouts.
-"if !exists("au_p4_cmd")
-"    let au_p4_cmd=1
-"    au BufEnter * call IsUnderPerforce()
-"    au FileChangedRO * call P4Checkout()
-"endif
-
 " Set default colour scheme
 colorscheme andy
 
@@ -142,9 +134,12 @@ colorscheme andy
 let g:omni_sql_no_default_maps = 1
 
 " Set up P4HOME for Perforce plugin and enable various aspects.
-let g:p4ClientRoot = $P4HOME
-runtime perforce/perforceutils.vim
-runtime perforce/perforcemenu.vim
+if exists("$P4HOME")
+  let g:p4ClientRoot = $P4HOME
+  runtime perforce/perforceutils.vim
+  runtime perforce/perforcemenu.vim
+  set titlestring=%t\ %{perforce#RulerStatus()}\ (%F)%<
+endif
 
 " Activate pathogen.
 call pathogen#infect()
