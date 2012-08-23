@@ -139,6 +139,8 @@ if exists("$P4HOME")
   runtime perforce/perforceutils.vim
   runtime perforce/perforcemenu.vim
   set titlestring=%t\ %{perforce#RulerStatus()}\ (%F)%<
+else
+  let loaded_perforce=1
 endif
 
 " Activate pathogen.
