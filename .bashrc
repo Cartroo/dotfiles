@@ -16,6 +16,11 @@ export PATH
 # Use vi as default editor.
 export EDITOR=/usr/bin/vi
 
+# Fix gnome-terminal type so things like vim colours look better.
+if [[ TERM=="xterm" && COLORTERM="gnome*" ]]; then
+    export TERM="xterm-256color"
+fi
+
 # Register Python startup script, if it exists.
 if [ -f ~/.pythonstartup.py ]; then
     export PYTHONSTARTUP=~/.pythonstartup.py

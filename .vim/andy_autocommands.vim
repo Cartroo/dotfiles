@@ -8,7 +8,7 @@ au BufReadPost * if line("'\"") | exe "normal '\"" | endif
 " Hook into final exit to restore window size if necessary
 au VimLeave * if exists("andyoldcols") | let &columns=andyoldcols | endif
 
-" Autocommands to setup features we only want in certain modes...
+" Autocommands to setup features we only want in certain file types...
 
 " ... For C/C++ files:
 au BufEnter * if &ft == "c" || &ft == "cpp" | call CMode_map() | endif
@@ -37,6 +37,15 @@ au BufLeave * if &ft == "perforce" | call MakeMode_unmap() | endif
 " ... For XML / HTML:
 au BufEnter * if &ft == "xml" || &ft == "html" | call XmlMode_map() | endif
 au BufLeave * if &ft == "xml" || &ft == "html" | call XmlMode_unmap() | endif
+
+" Definitions for the "fswitch" plugin
+autocmd BufEnter *.cpp let b:fswitchdst='h,hh,hpp' | let b:fswitchlocs='.,..,include,../include'
+autocmd BufEnter *.cc let b:fswitchdst='h,hh,hpp' | let b:fswitchlocs='.,..,include,../include'
+autocmd BufEnter *.cxx let b:fswitchdst='h,hh,hpp' | let b:fswitchlocs='.,..,include,../include'
+autocmd BufEnter *.c let b:fswitchdst='h' | let b:fswitchlocs='.,..,include,../include'
+autocmd BufEnter *.h let b:fswitchdst='c,cpp,cc,cxx' | let b:fswitchlocs='.,..,../common'
+autocmd BufEnter *.hh let b:fswitchdst='cpp,cc,cxx' | let b:fswitchlocs='.,..,../common'
+autocmd BufEnter *.hpp let b:fswitchdst='cpp,cc,cxx' | let b:fswitchlocs='.,..,../common'
 
 " Functions to call when we enter/leave a programming language buffer...
 
