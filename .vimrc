@@ -1,4 +1,11 @@
 
+" On Windows systems, set runtimepath to be HOMEDRIVE/HOMEDIR, if set.
+if has("win32") || has("win16")
+  if exists("$HOMEDRIVE") && exists("$HOMEPATH")
+    let &rtp=$HOMEDRIVE.$HOMEPATH.".vim,".&rtp
+  endif
+endif
+
 set nocompatible
 
 " For some reason VIM seems to think my xterms have a light background!
