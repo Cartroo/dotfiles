@@ -82,6 +82,9 @@ set printoptions=paper:a4,number:y,left:5pc,right:5pc,top:5pc,bottom:5pc
 set printheader=%<%t\ %m\ %y%=Page\ %N
 set printfont=:h8
 
+" Control what state is saved in the viminfo file
+set viminfo=%30,'50,<1000,s100,h
+
 " Store swap files on a local disk
 if isdirectory($HOME."/local/vimswap")
   set dir=$HOME/local/vimswap
