@@ -56,6 +56,8 @@ fun CMode_map()
   set cinkeys=0{,0},:,0#,!^F,o,O,e
   set cinwords=if,else,while,do,for,switch
   set shiftwidth=2
+  " Highlight text over 80 columns.
+  match ErrorMsg /.\%>81v/
   " The imap below maps '{' to a matched pair of { / } and moves the
   " cursor to between the two. Nice for writing code, but I found it
   " annoying for editing it (so I removed it)
@@ -85,6 +87,8 @@ fun PerlMode_map()
   set cinwords=if,else,while,do,for,eval
   set foldmethod=indent
   set shiftwidth=2
+  " Highlight text over 80 columns.
+  match ErrorMsg /.\%>81v/
   " See the same line for c-mode, above
   " imap { {<CR> <BS><CR>}<Up><End>
 endfun
@@ -109,6 +113,8 @@ fun PythonMode_map()
   set softtabstop=4
   set shiftwidth=4
   set foldmethod=indent
+  " Highlight text over 80 columns.
+  match ErrorMsg /.\%>81v/
 endfun
 
 fun PythonMode_unmap()
@@ -127,6 +133,8 @@ fun CodeMode_map()
   set softtabstop=4
   set shiftwidth=4
   set foldmethod=indent
+  " Highlight text over 80 columns.
+  match ErrorMsg /.\%>81v/
 endfun
 
 fun CodeMode_unmap()
@@ -144,6 +152,8 @@ fun MakeMode_map()
   set autoindent
   " We don't want to expand tabs to spaces if we're editing makefiles.
   set noexpandtab
+  " Highlight text over 80 columns.
+  match ErrorMsg /.\%>81v/
 endfun
 
 fun MakeMode_unmap()
@@ -161,6 +171,8 @@ fun XmlMode_map()
   set list
   set foldmethod=indent
   set textwidth=79
+  " Highlight text over 80 columns.
+  match ErrorMsg /.\%>81v/
 endfun
 
 fun XmlMode_unmap()

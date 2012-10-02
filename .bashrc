@@ -17,7 +17,7 @@ export PATH
 export EDITOR=/usr/bin/vi
 
 # Fix gnome-terminal type so things like vim colours look better.
-if [[ TERM=="xterm" && COLORTERM="gnome*" ]]; then
+if [[ "$TERM" == "xterm" && "${COLORTERM:0:5}" == "gnome" ]]; then
     export TERM="xterm-256color"
 fi
 
