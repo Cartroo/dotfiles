@@ -66,6 +66,9 @@ else
   export PS1="${PROMPT_PREFIX}"'\[\033[00;33m\]\u \[\033[00;31m\]\D{%a %H:%M} \[\033[01;37m\]\W \$\[\033[00m\] '
 fi
 
+# Skip .svn directories in recursive grep
+export GREP_OPTIONS="--exclude-dir=.svn --exclude-dir=.git --exclude=tags --color -n -I"
+
 # Source global definitions (if any)
 if [ -f /etc/bashrc ]; then
     . /etc/bashrc
