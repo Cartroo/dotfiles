@@ -66,9 +66,6 @@ else
   export PS1="${PROMPT_PREFIX}"'\[\033[00;33m\]\u \[\033[00;31m\]\D{%a %H:%M} \[\033[01;37m\]\W \$\[\033[00m\] '
 fi
 
-# Skip .svn directories in recursive grep
-export GREP_OPTIONS="--exclude-dir=.svn --exclude-dir=.git --exclude=tags --color -n -I"
-
 # Source global definitions (if any)
 if [ -f /etc/bashrc ]; then
     . /etc/bashrc
@@ -103,4 +100,12 @@ alias attach="screen -xRR"
 
 # Alias for config management.
 alias dotgit='git --git-dir=${HOME}/.config.git --work-tree=${HOME}'
+
+# Set default grep options:
+#   Skip .svn and .git directoryes when recursing.
+#   Skip tags files always (can override with --include=tags if required).
+#   Enable colour output.
+#   Display line numbers against matches.
+#   Skip binary files by default.
+alias grep="/bin/grep --exclude-dir=.svn --exclude-dir=.git --exclude=tags --color -n -I"
 
