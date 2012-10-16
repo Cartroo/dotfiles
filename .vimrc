@@ -60,7 +60,7 @@ set cinoptions=:0,=s,l1,g0,p0.5s,t0,+s,cs,(0,u0
 set formatoptions=tcqrl
 set listchars=tab:>-,trail:_,extends:<,precedes:>
 set tags=./hipritags;,./tags;,./global_hipritags;,./global_tags;
-set errorformat=%f:%l:\ %m,In\ file\ included\ from\ %f:%l:,\^I\^Ifrom\ %f:%l%m
+set errorformat=%f:%l:%c:\ %m,%f:\ %m
 set cmdheight=1
 set shortmess=atToO
 set showcmd
