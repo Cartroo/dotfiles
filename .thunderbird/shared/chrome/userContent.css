@@ -1,0 +1,36 @@
+
+blockquote[type=cite] {
+  padding: 5px !important;
+  border-top: 0 !important;
+  border-left: 2px solid #8888cc !important;
+  border-right: 0 !important;
+  border-bottom: 0 !important;
+  background-color: #ddddff !important;
+  border-radius: 5px !important;
+}
+
+blockquote[type=cite] blockquote[type=cite] {
+  padding: 5px !important;
+  border-top: 0 !important;
+  border-left: 2px solid #8888cc !important;
+  border-right: 0 !important;
+  border-bottom: 0 !important;
+  background-color: #ccccff !important;
+  border-radius: 5px !important;
+}
+
+blockquote[type=cite] blockquote[type=cite] blockquote[type=cite] {
+  padding: 5px !important;
+  border-top: 0 !important;
+  border-left: 2px solid #8888cc !important;
+  border-right: 0 !important;
+  border-bottom: 0 !important;
+  background-color: #bbbbff !important;
+  border-radius: 5px !important;
+}
+
+blockquote[type=cite] pre {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
