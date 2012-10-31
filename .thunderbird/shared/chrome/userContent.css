@@ -1,32 +1,24 @@
 
 blockquote[type=cite] {
   padding: 5px !important;
-  border-top: 0 !important;
-  border-left: 2px solid #8888cc !important;
-  border-right: 0 !important;
+  border-top: 1px solid #eeeeff !important;
+  border-right: 1px solid #eeeeff !important;
+  border-left: 0 !important;
   border-bottom: 0 !important;
-  background-color: #ddddff !important;
+  box-shadow: -2px 2px 4px #888888 !important;
+  /* background-color: #ddddff !important; */
+  background: -moz-linear-gradient(bottom, #ddddff, #ccccff);
   border-radius: 5px !important;
 }
 
 blockquote[type=cite] blockquote[type=cite] {
-  padding: 5px !important;
-  border-top: 0 !important;
-  border-left: 2px solid #8888cc !important;
-  border-right: 0 !important;
-  border-bottom: 0 !important;
-  background-color: #ccccff !important;
-  border-radius: 5px !important;
+  /* background-color: #ccccff !important; */
+  background: -moz-linear-gradient(bottom, #ccccff, #bbbbff);
 }
 
 blockquote[type=cite] blockquote[type=cite] blockquote[type=cite] {
-  padding: 5px !important;
-  border-top: 0 !important;
-  border-left: 2px solid #8888cc !important;
-  border-right: 0 !important;
-  border-bottom: 0 !important;
-  background-color: #bbbbff !important;
-  border-radius: 5px !important;
+  /* background-color: #bbbbff !important; */
+  background: -moz-linear-gradient(bottom, #bbbbee, #aaaaee);
 }
 
 blockquote[type=cite] pre {
