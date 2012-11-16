@@ -17,7 +17,7 @@ map \cp :cprev<CR>
 map \cn :cnext<CR>
 
 " Open tag list window.
-map \t :Tlist<CR>
+map \t :TlistToggle<CR>
 
 " Toggle main and header file.
 map \he :FSHere<CR>
