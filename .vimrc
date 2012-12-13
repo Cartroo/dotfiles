@@ -56,6 +56,7 @@ endif
 "  iskeyword       -> Characters which are valid in keywords
 "  updatetime      -> Time spent idle (in ms) before swap file written
 "  scrolloff       -> Lines of context to keep visible either side of cursor
+"  spelllang       -> Language for spell checking (:set spell)
 
 set cinoptions=:0,=s,l1,g0,p0.5s,t0,+s,cs,(0,u0
 set formatoptions=tcqrl
@@ -79,10 +80,14 @@ set scroll=4
 set iskeyword=@,48-57,_,192-255
 set updatetime=1000
 set scrolloff=3
+set spelllang=en_gb
 
 set printoptions=paper:a4,number:y,left:5pc,right:5pc,top:5pc,bottom:5pc
 set printheader=%<%t\ %m\ %y%=Page\ %N
 set printfont=:h8
+
+" Make shift-K search for keyword on Google.
+set keywordprg=search.sh
 
 " Control what state is saved in the viminfo file
 set viminfo=%30,'50,<1000,s100,h

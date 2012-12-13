@@ -20,12 +20,17 @@ hi Type           term=bold      cterm=bold ctermfg=Cyan       guifg=#00ffff gui
 hi Ignore                                   ctermfg=Black      guifg=Black   guibg=Black
 hi String         term=underline            ctermfg=DarkGreen  guifg=#228800 guibg=Black
 hi Character      term=underline            ctermfg=DarkGreen  guifg=#228800 guibg=Black
+
 " Bear in mind that status lines are reverse video!!!
 hi StatusLine term=reverse ctermbg=White ctermfg=Blue guibg=DarkBlue guifg=White
 hi StatusLineNC term=reverse ctermbg=White ctermfg=DarkBlue guibg=DarkBlue guifg=Black
 hi Pmenu term=reverse ctermbg=Gray ctermfg=White
 hi Error term=reverse ctermbg=DarkRed ctermfg=White guibg=Red guifg=White
+
 hi SpellBad term=reverse ctermbg=DarkRed guibg=Red
+hi SpellCap term=reverse ctermbg=DarkBlue guibg=Blue
+hi SpellRare term=reverse ctermbg=DarkCyan guibg=Cyan
+hi SpellLocal term=reverse ctermbg=DarkGreen guibg=Green
 
 
 " Default links of minor types for reference:

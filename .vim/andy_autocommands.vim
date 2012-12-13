@@ -38,6 +38,10 @@ au BufLeave * if &ft == "perforce" | call MakeMode_unmap() | endif
 au BufEnter * if &ft == "xml" || &ft == "html" | call XmlMode_map() | endif
 au BufLeave * if &ft == "xml" || &ft == "html" | call XmlMode_unmap() | endif
 
+" ... For text files:
+au BufEnter * if &ft == "text" | call TextMode_map() | endif
+au BufLeave * if &ft == "text" | call TextMode_unmap() | endif
+
 " Definitions for the "fswitch" plugin
 autocmd BufEnter *.cpp let b:fswitchdst='h,hh,hpp' | let b:fswitchlocs='.,..,include,../include'
 autocmd BufEnter *.cc let b:fswitchdst='h,hh,hpp' | let b:fswitchlocs='.,..,include,../include'
@@ -71,6 +75,7 @@ fun CMode_unmap()
   set nocindent
   set nolist
   set shiftwidth=8
+  match none
   " If you uncomment the above imap, also uncomment this line to cancel it
   " when we leave c-mode
   " iunmap {
@@ -98,6 +103,7 @@ fun PerlMode_unmap()
   set nolist
   set foldmethod=manual
   set shiftwidth=8
+  match none
   " If you uncomment the above imap, also uncomment this line to cancel it
   " when we leave perl-mode
   " iunmap {
@@ -124,6 +130,7 @@ fun PythonMode_unmap()
   set softtabstop=0
   set shiftwidth=8
   set foldmethod=manual
+  match none
 endfun
 
 fun CodeMode_map()
@@ -144,6 +151,7 @@ fun CodeMode_unmap()
   set softtabstop=0
   set shiftwidth=8
   set foldmethod=manual
+  match none
 endfun
 
 " ... For makefiles:
@@ -161,6 +169,7 @@ fun MakeMode_unmap()
   set noautoindent
   " We do, however, want to expand tabs in just about every other file format.
   set expandtab
+  match none
 endfun
 
 
@@ -181,5 +190,18 @@ fun XmlMode_unmap()
   set nolist
   set foldmethod=manual
   set textwidth=0
+  match none
+endfun
+
+
+" ... For text files:
+fun TextMode_map()
+  set textwidth=79
+  set spell
+endfun
+
+fun TextMode_unmap()
+  set textwidth=0
+  set nospell
 endfun
 

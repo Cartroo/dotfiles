@@ -53,6 +53,9 @@ map \cb GoZ<Esc>:g/^[ <Tab>]*$/.,/[^ <Tab>]/-j<CR>Gdd
 " New print command which uses the correct colour scheme.
 command! -nargs=* Hardcopy call DoMyPrint("<args>")
 
+" New grep command with sensible defaults.
+command! -nargs=+ Grep execute 'silent grep! -r <args>' | copen 12
+
 " Map <Tab> to perform completions when appropriate
 " inoremap <Tab> <C-R>=CleverTab()<CR>
 
