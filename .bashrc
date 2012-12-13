@@ -9,6 +9,18 @@ if [ -f ~/.localbashrc ]; then
     . ~/.localbashrc
 fi
 
+# Check if tmux is installed - if it is, and we're not already in a tmux
+# session, and an existing session is found, attach to it.
+if [ -n "${TMUX_AUTO_ATTACH}" ]; then
+    type -P tmux >/dev/null 2>&1
+    if [[ $? -eq 0 && -z $TMUX ]]; then
+        tmux has-session >/dev/null 2>&1
+        if [[ $? -eq 0 ]]; then
+            exec tmux attach
+        fi
+    fi
+fi
+
 # Include common extra directories in path.
 PATH=$HOME/bin:$PATH:/sbin:/usr/sbin:.
 export PATH

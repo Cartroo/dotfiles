@@ -21,6 +21,18 @@ elseif &term == "xterm-color"
   set t_Co=16
 endif
 
+" Fudge for use on the iPad with bluetooth keyboards, where ESC is nabbed for
+" the HOME key and can't be remapped (apparently). Use backtick as ESC, where
+" <Leader>-` yields a raw backtick instead.
+if &term == "xterm-ios"
+  nnoremap ` <Esc>
+  vnoremap ` <Esc>gV
+  onoremap ` <Esc>
+  inoremap ` <Esc>`^
+  nnoremap <Leader>` `
+  inoremap <Leader>` `
+endif
+
 
 " Save the current window width so if we change it we can restore it
 " when we quit.
