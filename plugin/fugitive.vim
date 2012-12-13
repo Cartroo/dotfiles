@@ -506,9 +506,9 @@ function! s:buffer_path(...) dict abort
   let rev = matchstr(self.spec(),'^fugitive://.\{-\}//\zs.*')
   if rev != ''
     let rev = s:sub(rev,'\w*','')
-  elseif self.repo().bare()
+  elseif self.spec()[0 : len(self.repo().dir())] ==# self.repo().dir() . '/'
     let rev = '/.git'.self.spec()[strlen(self.repo().dir()) : -1]
-  else
+  elseif !self.repo().bare() && self.spec()[0 : len(self.repo().tree())] ==# self.repo().tree() . '/'
     let rev = self.spec()[strlen(self.repo().tree()) : -1]
   endif
   return s:sub(s:sub(rev,'.\zs/$',''),'^/',a:0 ? a:1 : '')
@@ -933,7 +933,7 @@ function! s:Commit(args) abort
       let error = get(errors,-2,get(errors,-1,'!'))
       if error =~# '\<false''\=\.$'
         let args = a:args
-        let args = s:gsub(args,'%(%(^| )-- )@<!%(^| )@<=%(-[se]|--edit|--interactive)%($| )','')
+        let args = s:gsub(args,'%(%(^| )-- )@<!%(^| )@<=%(-[es]|--edit|--interactive|--signoff)%($| )','')
         let args = s:gsub(args,'%(%(^| )-- )@<!%(^| )@<=%(-F|--file|-m|--message)%(\s+|\=)%(''[^'']*''|"%(\\.|[^"])*"|\\.|\S)*','')
         let args = s:gsub(args,'%(^| )@<=[%#]%(:\w)*','\=expand(submatch(0))')
         let args = '-F '.s:shellesc(msgfile).' '.args
@@ -1066,7 +1066,7 @@ function! s:Log(cmd,...)
   let dir = getcwd()
   try
     execute cd.'`=s:repo().tree()`'
-    let &grepprg = escape(call(s:repo().git_command,cmd,s:repo()),'%')
+    let &grepprg = escape(call(s:repo().git_command,cmd,s:repo()),'%#')
     let &grepformat = '%f::%m'
     exe a:cmd
   finally
@@ -1870,14 +1870,19 @@ endfunction
 function! s:github_url(repo,url,rev,commit,path,type,line1,line2) abort
   let path = a:path
   let domain_pattern = 'github\.com'
-  for domain in exists('g:fugitive_github_domains') ? g:fugitive_github_domains : []
-    let domain_pattern .= '\|' . escape(domain, '.')
+  let domains = exists('g:fugitive_github_domains') ? g:fugitive_github_domains : []
+  for domain in domains
+    let domain_pattern .= '\|' . escape(split(domain, '://')[-1], '.')
   endfor
   let repo = matchstr(a:url,'^\%(https\=://\|git://\|git@\)\zs\('.domain_pattern.'\)[/:].\{-\}\ze\%(\.git\)\=$')
   if repo ==# ''
     return ''
   endif
-  let root = 'https://' . s:sub(repo,':','/')
+  if index(domains, 'http://' . matchstr(repo, '^[^:/]*')) >= 0
+    let root = 'http://' . s:sub(repo,':','/')
+  else
+    let root = 'https://' . s:sub(repo,':','/')
+  endif
   if path =~# '^\.git/refs/heads/'
     let branch = a:repo.git_chomp('config','branch.'.path[16:-1].'.merge')[11:-1]
     if branch ==# ''
@@ -2048,7 +2053,8 @@ function! s:BufReadIndex()
     nnoremap <buffer> <silent> cA :<C-U>Gcommit --amend --reuse-message=HEAD<CR>
     nnoremap <buffer> <silent> ca :<C-U>Gcommit --amend<CR>
     nnoremap <buffer> <silent> cc :<C-U>Gcommit<CR>
-    nnoremap <buffer> <silent> cv :<C-U>Gcommit -v<CR>
+    nnoremap <buffer> <silent> cva :<C-U>Gcommit --amend --verbose<CR>
+    nnoremap <buffer> <silent> cvc :<C-U>Gcommit --verbose<CR>
     nnoremap <buffer> <silent> D :<C-U>execute <SID>StageDiff('Gvdiff')<CR>
     nnoremap <buffer> <silent> dd :<C-U>execute <SID>StageDiff('Gvdiff')<CR>
     nnoremap <buffer> <silent> dh :<C-U>execute <SID>StageDiff('Gsdiff')<CR>
@@ -2486,7 +2492,7 @@ function! fugitive#foldtext() abort
     let [add, remove] = [-1, -1]
     let filename = ''
     for lnum in range(v:foldstart, v:foldend)
-      if filename ==# '' && getline(lnum) =~# '^[+-]\{3\} [ab]/'
+      if filename ==# '' && getline(lnum) =~# '^[+-]\{3\} [abciow12]/'
         let filename = getline(lnum)[6:-1]
       endif
       if getline(lnum) =~# '^+'
@@ -2499,6 +2505,9 @@ function! fugitive#foldtext() abort
     endfor
     if filename ==# ''
       let filename = matchstr(getline(v:foldstart), '^diff .\{-\} a/\zs.*\ze b/')
+    endif
+    if filename ==# ''
+      let filename = getline(v:foldstart)[5:-1]
     endif
     if exists('binary')
       return 'Binary: '.filename
