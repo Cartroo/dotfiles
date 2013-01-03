@@ -1,4 +1,6 @@
 # Never a good reason to include compiled Python files.
 *.pyc
 .vim/.netrwhist
+.localbashrc
+.localvimrc
 

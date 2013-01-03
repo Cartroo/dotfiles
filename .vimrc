@@ -160,6 +160,11 @@ else
   let loaded_perforce=1
 endif
 
+" Read .localvimrc if it exists.
+if filereadable($HOME."/.localvimrc")
+  source $HOME/.localvimrc
+endif
+
 " Activate pathogen.
 call pathogen#infect()
 
