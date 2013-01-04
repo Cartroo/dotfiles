@@ -1,0 +1,51 @@
+[user]
+	name = Andy Pearce
+	email = andy@andy-pearce.com
+[merge]
+	conflictstyle = diff3
+	tool = meld
+[diff]
+	tool = meld
+[color]
+	ui = true
+[color "branch"]
+	current = green bold
+	local = green
+	remote = blue
+	plain = red
+[color "diff"]
+	plain = white
+	meta = yellow blue bold
+	frag = white blue bold
+	func = white blue
+	old = red bold
+	new = green bold
+	commit = white bold
+	whitespace = white red
+[color "decorate"]
+	branch = green
+	remoteBranch = blue
+	tag = red
+	stash = cyan
+	HEAD = yellow
+[color "grep"]
+	context = cyan
+	filename = magenta
+	function = white blue bold
+	linenumber = green
+	match = yellow bold
+	selected = white
+	separator = cyan
+[color "interactive"]
+	prompt = white bold
+	header = blue bold
+	help = green
+	error = red bold
+[color "status"]
+	header = blue bold
+	added = green
+	updated = green
+	changed = red bold
+	untracked = cyan
+	branch = green bold
+	nobranch = white red bold
