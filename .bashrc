@@ -121,3 +121,10 @@ alias dotgit='git --git-dir=${HOME}/.config.git --work-tree=${HOME}'
 #   Skip binary files by default.
 alias grep="/bin/grep --exclude-dir=.svn --exclude-dir=.git --exclude=tags --color -n -I"
 
+# Store virtualenvs in ~/virtualenvs and initialise virtualenvwrapper
+if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
+    export WORKON_HOME=$HOME/virtualenvs
+    export PROJECT_HOME=$HOME/src
+    source /usr/local/bin/virtualenvwrapper.sh
+fi
+
