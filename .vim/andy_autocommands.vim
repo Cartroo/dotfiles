@@ -39,8 +39,8 @@ au BufEnter * if &ft == "xml" || &ft == "html" | call XmlMode_map() | endif
 au BufLeave * if &ft == "xml" || &ft == "html" | call XmlMode_unmap() | endif
 
 " ... For text files:
-au BufEnter * if &ft == "text" | call TextMode_map() | endif
-au BufLeave * if &ft == "text" | call TextMode_unmap() | endif
+au BufEnter * if &ft == "text" || &ft == "markdown" | call TextMode_map() | endif
+au BufLeave * if &ft == "text" || &ft == "markdown" | call TextMode_unmap() | endif
 
 " Definitions for the "fswitch" plugin
 autocmd BufEnter *.cpp let b:fswitchdst='h,hh,hpp' | let b:fswitchlocs='.,..,include,../include'
