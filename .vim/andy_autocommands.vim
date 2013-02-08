@@ -14,6 +14,10 @@ au VimLeave * if exists("andyoldcols") | let &columns=andyoldcols | endif
 au BufEnter * if &ft == "c" || &ft == "cpp" | call CMode_map() | endif
 au BufLeave * if &ft == "c" || &ft == "cpp" | call CMode_unmap() | endif
 
+" ... For Java files:
+au BufEnter * if &ft == "java" | call JavaMode_map() | endif
+au BufLeave * if &ft == "java" | call JavaMode_unmap() | endif
+
 " ... For Perl files:
 au BufEnter * if &ft == "perl" | call PerlMode_map() | endif
 au BufLeave * if &ft == "perl" | call PerlMode_unmap() | endif
@@ -79,6 +83,30 @@ fun CMode_unmap()
   " If you uncomment the above imap, also uncomment this line to cancel it
   " when we leave c-mode
   " iunmap {
+  if ! (&diff)
+    set foldmethod=manual
+  endif
+endfun
+
+" ... For Java files:
+fun JavaMode_map()
+  set list
+  set cindent
+  set cinkeys=0{,0},:,0#,!^F,o,O,e
+  set cinwords=if,else,while,do,for,switch
+  set shiftwidth=4
+  " Highlight text over 80 columns.
+  match ErrorMsg /.\%>81v/
+  if ! (&diff)
+    set foldmethod=syntax
+  endif
+endfun
+
+fun JavaMode_unmap()
+  set nocindent
+  set nolist
+  set shiftwidth=8
+  match none
   if ! (&diff)
     set foldmethod=manual
   endif

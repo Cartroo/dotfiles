@@ -70,7 +70,7 @@ endif
 "  scrolloff       -> Lines of context to keep visible either side of cursor
 "  spelllang       -> Language for spell checking (:set spell)
 
-set cinoptions=:0,=s,l1,g0,p0.5s,t0,+s,cs,(0,u0
+set cinoptions=:0,=s,l1,g0,p0.5s,t0,+s,cs,(0,u0,j1
 set formatoptions=tcqrl
 set listchars=tab:>-,trail:_,extends:<,precedes:>
 set tags=./hipritags;,./tags;,./global_hipritags;,./global_tags;
