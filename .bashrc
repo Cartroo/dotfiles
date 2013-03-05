@@ -108,6 +108,8 @@ ssh()
 alias ls="ls --color=auto"
 
 # Handy alias to avoid having to remember screen options.
+# (Don't need one for tmux as "tmux attach" is easy to remember and my
+# .tmux.conf is already configured to create new session if none are found).
 alias attach="screen -xRR"
 
 # Alias for config management.
@@ -120,6 +122,18 @@ alias dotgit='git --git-dir=${HOME}/.config.git --work-tree=${HOME}'
 #   Display line numbers against matches.
 #   Skip binary files by default.
 alias grep="/bin/grep --exclude-dir=.svn --exclude-dir=.git --exclude=tags --color -n -I"
+
+# Log console session.
+logsession()
+{
+    LOGPATH=/home/${USER}/log/console/$(date +%Y%m%d)
+    /bin/mkdir -p ${LOGPATH}
+    PREFIX=""
+    if [ -n "${1}" ]; then
+        PREFIX="${1}-"
+    fi
+    /usr/bin/script ${LOGPATH}/${PREFIX}$(date +%H%M%S).log
+}
 
 # Store virtualenvs in ~/virtualenvs and initialise virtualenvwrapper
 if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then

@@ -1,5 +1,8 @@
 
 " Setup to auto-run commands when editing various file types.
+"
+" TODO: Should move this commands into appropriate ~/.vim/after directories
+"       (see http://vim.wikia.com/wiki/Keep_your_vimrc_file_clean)
 
 
 " Initialisation autocommands (run upon loading a buffer)
@@ -63,6 +66,8 @@ fun CMode_map()
   set cindent
   set cinkeys=0{,0},:,0#,!^F,o,O,e
   set cinwords=if,else,while,do,for,switch
+  " Recognise doxygen comments
+  set comments^=:///
   set shiftwidth=2
   " Highlight text over 80 columns.
   match ErrorMsg /.\%>81v/

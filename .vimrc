@@ -47,56 +47,53 @@ endif
 
 " Now some globally useful variables
 "
-"  cinoptions      -> C indentation style, see 'help cinoptions-values'
-"  formatoptions   -> See 'help fo-table' for details
-"  listchars       -> Characters to use in list mode (display tabs, etc..)
-"  tags            -> Locations to search for tag file
-"  errorformat     -> Used to pick out errors in compiler output
-"  cmdheight       -> Lines used for status bar at base of screen
-"  shortmess       -> Sets abbreviations to use to shorten status messages
-"  laststatus      -> When last window has status bar
-"  shiftwidth      -> Default indentation depth (can be overridden)
 "  backspace       -> Specifies how much backspacing is allowed
-"  mouse           -> In which modes the mouse is enabled
+"  cinoptions      -> C indentation style, see 'help cinoptions-values'
+"  cmdheight       -> Lines used for status bar at base of screen
+"  errorformat     -> Used to pick out errors in compiler output
 "  foldlevel       -> How many levels of fold to fold
-"  rulerformat     -> Format string for the ruler
-"  statusline      -> Format string for the status line
-"  titlestring     -> Format string for window title bar
-"  ic              -> Set to ignore case when searching
-"  virtualedit     -> In which modes to allow the cursor to go off the line
-"  scroll          -> Number of lines to scroll for CTRL+U and CTRL+D
+"  formatoptions   -> See 'help fo-table' for details
 "  iskeyword       -> Characters which are valid in keywords
-"  updatetime      -> Time spent idle (in ms) before swap file written
+"  laststatus      -> When last window has status bar
+"  listchars       -> Characters to use in list mode (display tabs, etc..)
+"  mouse           -> In which modes the mouse is enabled
+"  printfont       -> Sets the font style and size for :hardcopy
+"  printheader     -> Controls the page header for :hardcopy
+"  printoptions    -> Control the output format of :hardcopy
+"  scroll          -> Number of lines to scroll for CTRL+U and CTRL+D
 "  scrolloff       -> Lines of context to keep visible either side of cursor
+"  shiftwidth      -> Default indentation depth (can be overridden)
+"  shortmess       -> Sets abbreviations to use to shorten status messages
 "  spelllang       -> Language for spell checking (:set spell)
+"  statusline      -> Format string for the status line
+"  tags            -> Locations to search for tag file
+"  titlestring     -> Format string for window title bar
+"  updatetime      -> Time spent idle (in ms) before swap file written
+"  virtualedit     -> In which modes to allow the cursor to go off the line
 
-set cinoptions=:0,=s,l1,g0,p0.5s,t0,+s,cs,(0,u0,j1
-set formatoptions=tcqrl
-set listchars=tab:>-,trail:_,extends:<,precedes:>
-set tags=./hipritags;,./tags;,./global_hipritags;,./global_tags;
-set errorformat=%f:%l:%c:\ %m,%f:\ %m
-set cmdheight=1
-set shortmess=atToO
-set showcmd
-set laststatus=2
-set shiftwidth=8
 set backspace=indent,eol,start
-set mouse=a
+set cinoptions=:0,=s,l1,g0,p0.5s,t0,+s,cs,(0,u0,j1
+set cmdheight=1
+set errorformat=%f:%l:%c:\ %m,%f:\ %m
 set foldlevel=99
-set ic
-"set rulerformat=%33(<%-2.2n>\ \ %-5.5l\ [%-5.5L]\ \ %3.3c-%-3.3v\ \ %P%)
-set statusline=%<%t\ %y%m%r\ %=%{&ic?'case':'CaSe'}\ [%-5.5L]\ %-5.5l\ %-3.3c%V\ %P
-set titlestring=%t\ (%F)%<
-set virtualedit=block
-set scroll=4
+set formatoptions=tcqrl
 set iskeyword=@,48-57,_,192-255
-set updatetime=1000
-set scrolloff=3
-set spelllang=en_gb
-
-set printoptions=paper:a4,number:y,left:5pc,right:5pc,top:5pc,bottom:5pc
-set printheader=%<%t\ %m\ %y%=Page\ %N
+set laststatus=2
+set listchars=tab:>-,trail:_,extends:<,precedes:>
+set mouse=a
 set printfont=:h8
+set printheader=%<%t\ %m\ %y%=Page\ %N
+set printoptions=paper:a4,number:y,left:5pc,right:5pc,top:5pc,bottom:5pc
+set scroll=4
+set scrolloff=3
+set shiftwidth=8
+set shortmess=atToO
+set spelllang=en_gb
+set statusline=%<%t\ %y%m%r\ %=%{&ic?'case':'CaSe'}\ [%-5.5L]\ %-5.5l\ %-3.3c%V\ %P
+set tags=./tags,./../tags,./../../tags,./../../../tags
+set titlestring=%t\ (%F)%<
+set updatetime=1000
+set virtualedit=block
 
 " Make shift-K search for keyword on Google.
 set keywordprg=search.sh
@@ -118,8 +115,10 @@ endif
 "  wildmenu        -> Tab-completion opens a menu rather than cycling
 "  title           -> Update terminal title bar
 "  ruler           -> Enable ruler above statusline
+"  ic              -> Set to ignore case when searching
+"  showcmd         -> Show information about current cmd at bottom of screen
 
-set incsearch expandtab tagrelative hidden wildmenu title
+set incsearch expandtab tagrelative hidden wildmenu title ic showcmd
 
 
 " Add menu support and map F1 to pop up the menu
@@ -130,7 +129,6 @@ map <F1> :emenu <C-Z>
 
 " Enable :Man command.
 source $VIMRUNTIME/ftplugin/man.vim
-
 
 " Read misc. functions.
 source $HOME/.vim/andy_functions.vim

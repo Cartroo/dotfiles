@@ -77,10 +77,10 @@ endfunction
 
 
 " Print with appropriate colour scheme.
-function DoMyPrint(args)
+function DoMyPrint(args, line1, line2)
  let colorsave=g:colors_name
  color print
- exec "hardcopy ".a:args
+ exec a:line1.",".a:line2."hardcopy ".a:args
  exec 'color '.colorsave
 endfunction
 

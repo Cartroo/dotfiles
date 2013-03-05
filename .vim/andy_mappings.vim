@@ -51,7 +51,7 @@ map \nd :set nodiff<CR>:set noscrollbind<CR>:set foldmethod=manual<CR>:set wrap<
 map \cb GoZ<Esc>:g/^[ <Tab>]*$/.,/[^ <Tab>]/-j<CR>Gdd
 
 " New print command which uses the correct colour scheme.
-command! -nargs=* Hardcopy call DoMyPrint("<args>")
+command! -nargs=* -range=% Hardcopy call DoMyPrint("<args>", <line1>, <line2>)
 
 " New grep command with sensible defaults.
 command! -nargs=+ Grep execute 'silent grep! -r <args> .' | copen 12

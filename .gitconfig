@@ -49,3 +49,7 @@
 	untracked = cyan
 	branch = green bold
 	nobranch = white red bold
+[init]
+	templatedir = /home/ajp/.git_template
+[alias]
+	ctags = !.git/hooks/ctags
