@@ -45,5 +45,16 @@ function <SID>LoadTemplate(name)
     endif
 endfunction
 
-command -nargs=1 LoadTemplate :call <SID>LoadTemplate("<args>")
+" Simple completion function. Note that this will only work satisfactorily
+" for completion at the end of the token - if the cursor is in the middle,
+" things get rather trickier. However, this uncommon use-case doesn't justify
+" the effort getting it working.
+function <SID>LoadTemplateCompleter(arglead, cmdline, cursorpos)
+    " Use glob() to get list of files in template dir as full paths, then
+    " split() to convert that to a Vim list, then map() with fnamemodify() to
+    " strip off the directory name.
+    return map(split(glob(s:default_template_dir."/".a:arglead."*"), "\n"), 'fnamemodify(v:val, ":t")')
+endfunction
+
+command -complete=customlist,<SID>LoadTemplateCompleter -nargs=1 LoadTemplate :call <SID>LoadTemplate("<args>")
 
