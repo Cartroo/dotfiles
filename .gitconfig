@@ -53,3 +53,5 @@
 	templatedir = /home/ajp/.git_template
 [alias]
 	ctags = !.git/hooks/ctags
+[github]
+	user = Cartroo

@@ -175,10 +175,45 @@ if filereadable($HOME."/.localvimrc")
   source $HOME/.localvimrc
 endif
 
-" Activate pathogen.
-call pathogen#infect()
+filetype off
+
+set rtp+=~/.vim/bundle/vundle
+call vundle#rc()
+
+" To boostrap:
+"   git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+"   :BundleInstall
+
+" Github
+" vundle
+Bundle 'gmarik/vundle'
+" file-line
+Bundle 'bogado/file-line'
+" fugitive
+Bundle 'tpope/vim-fugitive'
+" gist-vim
+Bundle 'mattn/webapi-vim'
+Bundle 'mattn/gist-vim'
+" syntastic
+Bundle 'scrooloose/syntastic'
+" taglisttoo
+Bundle 'ervandew/taglisttoo'
+" vim-session
+Bundle 'xolox/vim-session'
+" vim-templ
+Bundle 'Cartroo/vim-templ'
+" xmledit
+Bundle 'sukima/xmledit'
+
+" vim-scrips
+" bufexplorer
+Bundle 'bufexplorer.zip'
+" FSwitch
+Bundle 'FSwitch'
+" python.vim
+Bundle 'python.vim'
 
 " Finally we activate filetype plugins - we do that all the way down here so
 " any customisations above can take effect
-filetype plugin on
+filetype plugin indent on
 

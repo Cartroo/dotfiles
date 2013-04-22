@@ -3,6 +3,9 @@
 *.swp
 *.vba
 .vim/.netrwhist
+.vim/bundle
+.vim/spell
+.vim/sessions
 .localbashrc
 .localvimrc
 tags

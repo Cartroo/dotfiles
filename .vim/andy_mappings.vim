@@ -59,3 +59,7 @@ command! -nargs=+ Grep execute 'silent grep! -r <args> .' | copen 12
 " Map <Tab> to perform completions when appropriate
 " inoremap <Tab> <C-R>=CleverTab()<CR>
 
+" Command to diff changed file against saved original.
+command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_
+                        \ | diffthis | wincmd p | diffthis
+
