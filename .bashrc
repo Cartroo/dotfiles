@@ -88,6 +88,11 @@ if [ -f /etc/bash_completion ]; then
     source /etc/bash_completion
 fi
 
+# Source bashmarks.sh
+if [ -f ~/bin/bashmarks.sh ]; then
+    source ~/bin/bashmarks.sh
+fi
+
 # SSH wrapper which adds hostname to xterm title, for hosts where the remote
 # prompt hasn't been set up to do this.
 ssh()
