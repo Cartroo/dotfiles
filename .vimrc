@@ -210,8 +210,10 @@ Bundle 'sukima/xmledit'
 Bundle 'bufexplorer.zip'
 " FSwitch
 Bundle 'FSwitch'
-" python.vim
-Bundle 'python.vim'
+" Lots of yummy Python goodness
+Bundle 'vim-scripts/python.vim'
+" PEP8 Python indentation
+Bundle 'hynek/vim-python-pep8-indent'
 
 " Finally we activate filetype plugins - we do that all the way down here so
 " any customisations above can take effect
