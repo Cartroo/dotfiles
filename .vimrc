@@ -89,9 +89,9 @@ set scrolloff=3
 set shiftwidth=8
 set shortmess=atToO
 set spelllang=en_gb
-set statusline=%<%t\ %y%m%r\ %=%{&ic?'case':'CaSe'}\ [%-5.5L]\ %-5.5l\ %-3.3c%V\ %P
+set statusline=%-3n%<%t\ %y%m%r\ %=%{&ic?'case':'CaSe'}\ [%-5.5L]\ %-5.5l\ %-3.3c%V\ %P
 set tags=./tags,./../tags,./../../tags,./../../../tags
-set titlestring=%t\ (%F)%<
+let &titlestring="%t%m%r ".$USER."@".hostname()." (%F)%<"
 set updatetime=1000
 set virtualedit=block
 
