@@ -72,7 +72,7 @@ endif
 "  virtualedit     -> In which modes to allow the cursor to go off the line
 
 set backspace=indent,eol,start
-set cinoptions=:0,=s,l1,g0,p0.5s,t0,+s,cs,(0,u0,j1
+set cinoptions=:0,=s,l1,N-s,g0,p0.5s,t0,+s,cs,(0,u0,j1
 set cmdheight=1
 set errorformat=%f:%l:%c:\ %m,%f:\ %m
 set foldlevel=99
