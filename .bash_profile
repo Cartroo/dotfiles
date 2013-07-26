@@ -4,11 +4,6 @@
 
 PROMPT_PREFIX=""
 
-# Source .localbashrc, if it exists.
-if [ -f ~/.localbashrc ]; then
-    . ~/.localbashrc
-fi
-
 # Check if tmux is installed - if it is, and we're not already in a tmux
 # session, and an existing session is found, attach to it.
 if [ -n "${TMUX_AUTO_ATTACH}" ]; then

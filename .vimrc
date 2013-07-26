@@ -33,6 +33,10 @@ if &term == "xterm-ios"
   inoremap <Leader>` `
 endif
 
+" Clear PAGER variable for reading man pages within Vim if Vim is already
+" the man PAGER.
+let $PAGER=''
+
 
 " Save the current window width so if we change it we can restore it
 " when we quit.

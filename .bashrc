@@ -4,6 +4,11 @@
 
 PROMPT_PREFIX=""
 
+# Source .localbashrc, if it exists.
+if [ -f ~/.localbashrc ]; then
+    . ~/.localbashrc
+fi
+
 # Include common extra directories in path.
 PATH=$HOME/bin:$PATH:/sbin:/usr/sbin:.
 export PATH
@@ -11,8 +16,16 @@ export PATH
 # Set timezone.
 export TZ="Europe/London"
 
-# Use vi as default editor.
-export EDITOR=/usr/bin/vi
+# Use vim/vi as default editor if they exist.
+if [[ -e /usr/bin/vim ]]; then
+    export EDITOR=/usr/bin/vim
+    export MANPAGER="/bin/sh -c \"unset PAGER; col -b -x | \
+        /usr/bin/vim -R -c 'set ft=man nomod nolist' -c 'map q :q<CR>' \
+        -c 'map <SPACE> <C-D>' -c 'map b <C-U>' \
+        -c 'nmap K :Man <C-R>=expand(\\\"<cword>\\\")<CR><CR>' -\""
+elif [[ -e /usr/bin/vi ]]; then
+    export EDITOR=/usr/bin/vi
+fi
 
 # Fix gnome-terminal type so things like vim colours look better.
 if [[ "$TERM" == "xterm" && "${COLORTERM:0:5}" == "gnome" ]]; then

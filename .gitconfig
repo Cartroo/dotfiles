@@ -1,6 +1,6 @@
 [user]
-	name = Andy Pearce
 	email = andy@andy-pearce.com
+	name = Andy Pearce
 [merge]
 	conflictstyle = diff3
 	tool = meld
@@ -49,8 +49,8 @@
 	untracked = cyan
 	branch = green bold
 	nobranch = white red bold
-[init]
-	templatedir = /home/ajp/.git_template
+#[init]
+#	templatedir = /home/ajp/.git_template
 [alias]
 	ctags = !.git/hooks/ctags
 [github]
